@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" media="all" href="animate.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <style>
+    div{
+      transition: linear 3s;
+      animation-delay: .1s;
+      width: 200px;
+      height:500px;
+    }
+</style>
+</head>
+<body>
+ <div class="animated">This text will animate. first</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate.</div>
+ <div class="animated">This text will animate. lase</div>
+</body>
+<script>
+  var $animation_elements = $('.animated');var y="";
+var $window = $(window);
+$window.on('scroll', check_if_in_view);
+$window.trigger('scroll');
+function check_if_in_view() {
+  var window_height = $window.height();
+  var window_top_position = $window.scrollTop();
+  var window_bottom_position = (window_top_position + window_height);
+
+  $.each($animation_elements, function() {
+    var $element = $(this);
+    var element_height = $element.outerHeight();
+    var element_top_position = $element.offset().top;
+    var element_bottom_position = (element_top_position + element_height);
+
+    //check to see if this current container is within viewport
+    if ((element_bottom_position >= window_top_position) &&
+        (element_top_position <= window_bottom_position)) {
+      var x=parseInt($element.index());
+      switch(x){
+        //Add as much cases as you want 
+        case 0: y="animated pulse";break;
+        case 1: y="animated pulse";break;
+        case 2: y="animated wobble";break;
+        case 3: y="animated heart";break;
+        case 4: y="animated pulse";break;
+        case 5: y="animated pulse";break;
+        case 6: y="animated pulse";break;
+        case 7: y="animated pulse";break;
+        case 8: y="animated pulse";break;
+        default:break;
+      }
+      $element.addClass(y);y="";
+    } else {
+      $element.removeClass();
+    }
+  });
+}
+</script>
+</html>
